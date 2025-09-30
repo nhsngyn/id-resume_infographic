@@ -1,0 +1,352 @@
+
+     /* Pretendard 폰트 CDN */
+      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+      /* === 기본 스타일 === */
+      body {
+        font-family: "Pretendard", sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+        color: #555;
+        line-height: 1.5;
+      }
+      .resume-container {
+        width: 210mm;
+        min-height: 297mm;
+        background-color: #fff;
+        padding: 15mm;
+        box-sizing: border-box;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+        color: #333;
+      }
+
+      /* === 상단/하단 2단 레이아웃 === */
+      .top-section,
+      .bottom-container {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        margin-top: 10px;
+      }
+
+      .profile-section,
+      .skills-section,
+      .capability-section,
+      .character-section {
+        flex: 1;
+      }
+
+      /* === 프로필 섹션 (좌측 상단) === */
+      .profile-section {
+        text-align: left;
+      }
+      .profile-tagline {
+        font-size: 16px;
+        color: #777;
+      }
+      .profile-section h1 {
+        font-size: 42px;
+        color: #3a5936;
+        font-weight: 800;
+      }
+
+      .profile-pic {
+        margin-bottom: 5px;
+      }
+      .profile-pic img {
+        width: 160px;
+        height: 160px;
+        margin: 0;
+      }
+      .contact-info {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
+
+      /* === 섹션 공통 === */
+      .section-title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        position: relative;
+      }
+      .section-divider {
+        border: none;
+        height: 2px;
+        background-color: #dbd6d6;
+        margin: 50px 0;
+      }
+
+      /* === SKILL 섹션 (수정된 부분) === */
+      .skills-description {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+        text-align: justify;
+        line-height: 1.5;
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        text-align: center;
+      }
+      .skill-item {
+        transition: transform 0.2s ease-in-out;
+      }
+      .skill-item:hover {
+        transform: scale(1.15); /* 커서 올리면 커지는 효과 */
+      }
+      .skill-item p {
+        font-size: 14px;
+        color: #555;
+        margin-top: 5px;
+      }
+      .skill-icon-square {
+        width: 70px; /* 너비 */
+        height: 70px; /* 높이 */
+        border-radius: 8px; /* 약간 둥근 사각형 (원하지 않으면 0으로) */
+        border: 5px solid #3a5936; /* 초록색 테두리 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        background-color: #f7fcf9; /* 내부 배경색 */
+        overflow: hidden; /* SVG가 밖으로 나가지 않도록 */
+      }
+      .skill-icon-square svg {
+        /* SVG 선택자도 변경 */
+        width: 45px; /* SVG 크기 조절 */
+        height: 45px;
+        fill: #3a5936; /* SVG 색상 (일부 로고는 자체 색상 가짐) */
+      }
+
+/* === WORK EXPERIENCE (타임라인) === */
+      .timeline {
+        position: relative;
+        height: 250px;
+      }
+      .timeline-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #3a5936;
+        border-radius: 50px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      .timeline-points {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 5%;
+      }
+      .timeline-point {
+        font-weight: bold;
+        color: #ffffff;
+        padding: 0 8px;
+      }
+      .event {
+        position: absolute;
+        width: 250px;
+      }
+      .event::before { /* 세로 연결선 */
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 20px;
+        background-color: #ccc;
+      }
+      .event.top {
+        bottom: 150px;
+      }
+      .event.bottom {
+        top: 150px;
+      }
+      .event.top::before {
+        bottom: -25px;
+      }
+      .event.bottom::before {
+        top: -20px;
+      }
+      .event h3 {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .event p {
+        font-size: 13px;
+        color: #777;
+        margin-top: 4px;
+        line-height: 1.5;
+        white-space: normal;
+      }
+      
+      /* --- 이 부분이 핵심 수정사항입니다 --- */
+
+      /* 왼쪽 항목들: 왼쪽 정렬 */
+      .event-1, .event-2 {
+        text-align: left;
+      }
+      .event-1::before{
+        left: 0;
+      }
+      .event-2::before {
+        left: 30%;
+      }
+      .event-1 { left: 5%; }
+      .event-2 { left: 20%; }
+
+      /* 오른쪽 항목들: 오른쪽 정렬 */
+      .event-3, .event-4 {
+        text-align: right;
+      }
+      .event-3::before, .event-4::before {
+        right: 0; /* 연결선을 오른쪽으로 이동 */
+      }
+      .event-3 { right: 30%; } /* left 대신 right 속성 사용 */
+      .event-4 { right: 5%; }  /* left 대신 right 속성 사용 */
+
+      /* === 하단부 (Capability & Character) === */
+.bottom-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 10px;
+    position: relative; /* <-- 이 부분을 추가 */
+}
+
+/* 구분선 추가: .bottom-container의 자식으로 가상 요소를 생성 */
+.bottom-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background-color: #dbd6d6;
+}
+      .capability-list {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin-top: 20%;
+      }
+    .capability-tagline {
+        font-size: 16px;
+        color: #777;
+        margin-top: 20px;
+      }
+      .battery-item {
+        width: 60px;
+        transition: transform 0.2s ease-in-out;
+      }
+      .battery-item:hover {
+        transform: scale(1.1);
+      }
+      .battery-item p {
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 10px;
+      }
+      .battery {
+        height: 120px;
+        border: 3px solid #333;
+        border-radius: 8px;
+        padding: 5px;
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 3px;
+      }
+      .battery::before {
+        content: "";
+        width: 20px;
+        height: 6px;
+        background-color: #333;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 3px;
+      }
+      .battery-block {
+        height: 100%;
+        border-radius: 2px;
+      }
+      .battery-block.filled {
+        background-color: #3a5936;
+      }
+      .battery-block.empty {
+        background-color: #e0e0e0;
+      }
+
+      .character-map {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+
+      .character-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 이미지가 컨테이너를 꽉 채우도록 설정 */
+        border-radius: 15px; /* 이미지 모서리를 둥글게 */
+      }
+
+      /* 기존 character-trait 규칙은 그대로 유지됩니다 */
+      .character-trait {
+        position: absolute;
+        font-size: 14px;
+        font-weight: 800;
+    
+        padding: 5px 12px;
+
+        color: #333;
+        text-align: center;
+        /* z-index를 추가하여 텍스트가 이미지 위로 오도록 합니다 */
+        z-index: 1;
+      }
+      .trait-1 {
+        top: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .trait-2 {
+        top: 30%;
+        right: -30px;
+      }
+      .trait-3 {
+        bottom: 40px;
+        right: 0px;
+      }
+      .trait-4 {
+        bottom: 40px;
+        left: 35px;
+      }
+      .trait-5 {
+        top: 30%;
+        left: -30px;
+      }
