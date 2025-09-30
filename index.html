@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infographic Resume - 손수민</title>
+    <style>
+      /* Pretendard 폰트 CDN */
+      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+      /* === 기본 스타일 초기화 및 설정 === */
+      body {
+        font-family: "Pretendard", sans-serif;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+        color: #333;
+        line-height: 1.6;
+      }
+      .resume-container {
+        width: 800px;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+      }
+
+      /* === 1. 헤더 (소개 및 스킬) === */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 30px;
+        margin-bottom: 20px;
+      }
+
+      .intro {
+        flex-basis: 30%;
+      }
+      .intro p {
+        color: #888;
+        font-size: 14px;
+        margin: 0 0 10px 0;
+      }
+      .intro h1 {
+        font-size: 48px;
+        color: #3ab676;
+        letter-spacing: -2px;
+        font-weight: 800;
+      }
+
+      .profile-pic {
+        flex-basis: 20%;
+        text-align: center;
+      }
+      .profile-pic img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 5px solid #3ab676;
+      }
+
+      .skills-overview {
+        flex-basis: 50%;
+      }
+      .skills-overview h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      .skills-overview p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+      .skill-icons {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+      }
+      .skill-item {
+        font-size: 12px;
+        color: #555;
+      }
+      .skill-item .icon-circle {
+        width: 70px;
+        height: 70px;
+        border: 3px solid #e0e0e0;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #3ab676;
+      }
+      .skill-item .icon-circle.ps {
+        border-top-color: #3ab676;
+        border-right-color: #3ab676;
+      }
+      .skill-item .icon-circle.ai {
+        border-color: #3ab676;
+      }
+      .skill-item svg {
+        width: 40px;
+        height: 40px;
+        fill: #3ab676;
+      }
+
+      /* === 2. 연락처 정보 === */
+      .contact-info {
+        font-size: 14px;
+        color: #555;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      /* === 3. 섹션 공통 타이틀 === */
+      .section-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: #3ab676;
+        margin: 8px auto 0;
+      }
+
+      /* === 4. 업무 경험 (Work Experience) === */
+      .timeline {
+        position: relative;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+      .timeline-bar {
+        width: 100%;
+        height: 8px;
+        background-color: #3ab676;
+        border-radius: 4px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+      .timeline-events {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+      }
+      .timeline-event {
+        position: relative;
+        text-align: center;
+        width: 120px;
+      }
+      .timeline-event::before {
+        /* 타임라인 점 */
+        content: "";
+        width: 18px;
+        height: 18px;
+        background: white;
+        border: 4px solid #3ab676;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+      .event-date {
+        font-weight: bold;
+        color: #3ab676;
+        margin: 0 10px;
+        padding: 5px 10px;
+        background-color: #e6f7ee;
+        border-radius: 15px;
+        font-size: 12px;
+      }
+      .event-content {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px; /* 너비 고정 */
+      }
+      .event-content.top {
+        bottom: 40px;
+      }
+      .event-content.bottom {
+        top: 40px;
+      }
+      .event-content h3 {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .event-content p {
+        font-size: 12px;
+        color: #777;
+        margin: 5px 0 0 0;
+      }
+      .event-content::after {
+        /* 연결선 */
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: #ccc;
+      }
+      .event-content.top::after {
+        bottom: -20px;
+      }
+      .event-content.bottom::after {
+        top: -20px;
+      }
+
+      /* === 5. 역량 및 캐릭터 (Capability & Character) === */
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin-top: 50px;
+      }
+
+      /* 5-1. 역량 (Capability) */
+      .capability-list {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+      }
+      .battery-item {
+        width: 60px;
+      }
+      .battery {
+        height: 120px;
+        border: 3px solid #333;
+        border-radius: 8px;
+        padding: 4px;
+        position: relative;
+        margin: 0 auto 10px;
+      }
+      .battery::before {
+        /* 배터리 꼭지 */
+        content: "";
+        width: 20px;
+        height: 6px;
+        background-color: #333;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 3px;
+      }
+      .battery-level {
+        background-color: #3ab676;
+        border-radius: 3px;
+        position: absolute;
+        bottom: 4px;
+        left: 4px;
+        right: 4px;
+        height: 0; /* JS로 높이 조절 */
+        transition: height 1.5s ease-out;
+      }
+      .battery-item p {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      /* 5-2. 캐릭터 (Character) */
+      .character-map {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+      }
+      .character-map .profile-pic {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .character-trait {
+        position: absolute;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #e6f7ee;
+        padding: 5px 12px;
+        border-radius: 15px;
+        color: #2b8a5c;
+      }
+      /* 각 특성 위치 지정 */
+      .trait-1 {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .trait-2 {
+        top: 25%;
+        right: -20%;
+      }
+      .trait-3 {
+        bottom: 25%;
+        right: -15%;
+      }
+      .trait-4 {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .trait-5 {
+        bottom: 25%;
+        left: -15%;
+      }
+      .trait-6 {
+        top: 25%;
+        left: -20%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="resume-container">
+      <header>
+        <div class="intro">
+          <p>끊임없이 상상하는 디자이너, 손수민</p>
+          <h1>SON SOO MIN</h1>
+        </div>
+        <div class="profile-pic">
+          <img src="https://i.pravatar.cc/150?img=1" alt="프로필 사진" />
+        </div>
+        <div class="skills-overview">
+          <h2>SKILL</h2>
+          <p>
+            대학교에서 배운 디자인 기본실력과 많은 대외활동을 함으로써
+            커뮤니케이션 능력과 다양한 디자인 경험을 쌓게 되었습니다. 빠르게
+            작업을 할 수 있는 상황대처 능력이 풍부한 디자이너입니다.
+          </p>
+          <div class="skill-icons">
+            <div class="skill-item">
+              <div class="icon-circle">Id</div>
+              <p>보통</p>
+            </div>
+            <div class="skill-item">
+              <div class="icon-circle ps">Ps</div>
+              <p>보통 이상</p>
+            </div>
+            <div class="skill-item">
+              <div class="icon-circle ai">Ai</div>
+              <p>보통 이상</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="contact-info">
+        <p>
+          끊임없이 상상하고 실험하는 22살 디자이너 손수민입니다. 저는 수원시
+          장안구에 거주중이며, 010-9876-5432로 연락 가능합니다. 제 이메일은
+          soomin.son@example.com 이고 카카오톡은 soominDesign 항상 열려있으니
+          언제나 연락이 가능합니다.
+        </p>
+      </section>
+
+      <section class="work-experience">
+        <h2 class="section-title">WORK EXPERIENCE</h2>
+        <div class="timeline">
+          <div class="timeline-bar"></div>
+          <div class="timeline-events">
+            <div class="timeline-event">
+              <span class="event-date">2015.03</span>
+              <div class="event-content top">
+                <h3>수원여자대학교</h3>
+                <p>시각디자인과 디지털전공 입학</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <span class="event-date">2016.01</span>
+              <div class="event-content bottom">
+                <h3>분다비치 뮤지엄</h3>
+                <p>'모네, 빛을 그리다展' 온라인 서포터즈</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <span class="event-date">2016.05</span>
+              <div class="event-content top">
+                <h3>2016 서울 드럼 페스티벌</h3>
+                <p>서울 특별시에서 주최한 거리축제 행사 기획 및 디자인</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <span class="event-date">2016.07</span>
+              <div class="event-content bottom">
+                <h3>국제청년센터</h3>
+                <p>비영리단체 행사 포스터 제작</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <span class="event-date">2016.08</span>
+              <div class="event-content top">
+                <h3>청년취업 아카데미</h3>
+                <p>UIUX 과정 이수</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <span class="event-date">2016.09</span>
+              <div class="event-content bottom">
+                <h3>노들섬 아시장</h3>
+                <p>용산구 노들섬 행사 보조</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid-container">
+        <section class="capability">
+          <h2 class="section-title">CAPABILITY</h2>
+          <div class="capability-list">
+            <div class="battery-item">
+              <div class="battery">
+                <div class="battery-level" data-level="90%"></div>
+              </div>
+              <p>창의력</p>
+            </div>
+            <div class="battery-item">
+              <div class="battery">
+                <div class="battery-level" data-level="85%"></div>
+              </div>
+              <p>일러그래피</p>
+            </div>
+            <div class="battery-item">
+              <div class="battery">
+                <div class="battery-level" data-level="75%"></div>
+              </div>
+              <p>기획력</p>
+            </div>
+            <div class="battery-item">
+              <div class="battery">
+                <div class="battery-level" data-level="95%"></div>
+              </div>
+              <p>커뮤니케이션</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="character">
+          <h2 class="section-title">CHARACTER</h2>
+          <div class="character-map">
+            <div class="profile-pic">
+              <img src="https://i.pravatar.cc/150?img=1" alt="프로필 사진" />
+            </div>
+            <span class="character-trait trait-1">디자인에 대한 자부심</span>
+            <span class="character-trait trait-2"
+              >무너지지 않는<br />긍정적 에너지</span
+            >
+            <span class="character-trait trait-3">끊임없는 도전정신</span>
+            <span class="character-trait trait-4">강한 책임감</span>
+            <span class="character-trait trait-5"
+              >밤샘 작업에도<br />끄떡없는 체력</span
+            >
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // 페이지 로드 시 배터리 게이지 애니메이션 실행
+      window.addEventListener("DOMContentLoaded", () => {
+        const batteryLevels = document.querySelectorAll(".battery-level");
+
+        // Intersection Observer를 사용하여 화면에 보일 때 애니메이션 시작
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const level = entry.target.getAttribute("data-level");
+                entry.target.style.height = level;
+                observer.unobserve(entry.target); // 한 번 실행 후 관찰 중지
+              }
+            });
+          },
+          { threshold: 0.5 }
+        ); // 50% 보이면 실행
+
+        batteryLevels.forEach((level) => {
+          observer.observe(level);
+        });
+      });
+    </script>
+  </body>
+</html>
